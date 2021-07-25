@@ -2,19 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectilePowerupSpawnStrategy : PowerupSpawnStrategy
+public class ProjectilePowerupSpawnStrategy : PowerupSpawnStrategyBase
 {
-    public GameObject gameObject;
-    public SpawnManager spawnManager;
-
-    public void Register(GameObject gameObject)
+    public override void SpawnPowerups(int gameLevel)
     {
-        this.gameObject = gameObject;
-        spawnManager = gameObject.GetComponent<SpawnManager>();
-    }
-
-    public void SpawnPowerups(int gameLevel)
-    {
-        GameObject.Instantiate(spawnManager.powerupProjectilePrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), spawnManager.powerupProjectilePrefab.transform.rotation);
+        SpawnPowerupWave(gameLevel, spawnManager.powerupProjectilePrefab);
     }
 }

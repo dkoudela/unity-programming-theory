@@ -1,18 +1,9 @@
 ﻿using UnityEngine;
 
-public class BasicPowerupSpawnStrategy : PowerupSpawnStrategy
+public class BasicPowerupSpawnStrategy : PowerupSpawnStrategyBase
 {
-    public GameObject gameObject;
-    public SpawnManager spawnManager;
-
-    public void Register(GameObject gameObject)
+    public override void SpawnPowerups(int gameLevel)
     {
-        this.gameObject = gameObject;
-        spawnManager = gameObject.GetComponent<SpawnManager>();
-    }
-
-    public void SpawnPowerups(int gameLevel)
-    {
-        GameObject.Instantiate(spawnManager.powerupStrongerPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), spawnManager.powerupStrongerPrefab.transform.rotation);
+        SpawnPowerupWave(gameLevel, spawnManager.powerupStrongerPrefab);
     }
 }

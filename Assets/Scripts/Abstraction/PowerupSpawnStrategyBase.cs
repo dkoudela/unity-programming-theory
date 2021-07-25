@@ -1,16 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerupSpawnStrategyBase : PowerupSpawnStrategy
 {
-    public void Register(GameObject gameObject)
+    public GameObject gameObject;
+    public SpawnManager spawnManager;
+
+    public virtual void Register(GameObject gameObject)
     {
-        throw new System.NotImplementedException();
+        this.gameObject = gameObject;
+        spawnManager = gameObject.GetComponent<SpawnManager>();
     }
 
-    public void SpawnPowerups(int gameLevel)
+    public virtual void SpawnPowerups(int gameLevel)
     {
-        throw new System.NotImplementedException();
+    }
+
+    protected void SpawnPowerupWave(int gameLevel, GameObject powerupPrefab)
+    {
+        GameObject.Instantiate(powerupPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), powerupPrefab.transform.rotation);
     }
 }

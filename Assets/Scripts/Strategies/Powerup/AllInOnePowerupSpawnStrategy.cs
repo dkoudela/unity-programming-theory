@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategy
+public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategyBase
 {
-    public GameObject gameObject;
-    public SpawnManager spawnManager;
-
     private List<GameObject> gameObjects = new List<GameObject>();
     private float spawnRepeat = 15.0f;
 
-    public void Register(GameObject gameObject)
+    public override void Register(GameObject gameObject)
     {
-        this.gameObject = gameObject;
-        spawnManager = gameObject.GetComponent<SpawnManager>();
+        base.Register(gameObject);
+
         gameObjects.Add(spawnManager.powerupStrongerPrefab);
         gameObjects.Add(spawnManager.powerupProjectilePrefab);
         gameObjects.Add(spawnManager.powerupSmashPrefab);
@@ -22,7 +19,7 @@ public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategy
         spawnManager.InvokeRepeating("SpawnPowerups", spawnRepeat, spawnRepeat);
     }
 
-    public void SpawnPowerups(int gameLevel)
+    public override void SpawnPowerups(int gameLevel)
     {
         SpawnPowerup();
     }
