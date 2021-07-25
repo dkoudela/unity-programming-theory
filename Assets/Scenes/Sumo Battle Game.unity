@@ -869,12 +869,6 @@ Transform:
   m_Father: {fileID: 1163312449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
---- !u!1 &1297622488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4085043390387858328, guid: 3fe6b3b02b0a52f41a7e01224ad29f31,
-    type: 3}
-  m_PrefabInstance: {fileID: 910888427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1403545340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1133,13 +1127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0828f48fcdc484a86505627e2779fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 500
-  powerupStrength: 15
-  jumpUpLimit: 0.5
-  jumpDownLimit: 0
-  islandBorder: 13
-  powerupIndicator: {fileID: 1297622488}
+  powerupIndicator: {fileID: 4085043390387858328, guid: 3fe6b3b02b0a52f41a7e01224ad29f31,
+    type: 3}
   projectile: {fileID: 6590685857309367207, guid: bfc7f1ff903f0ec4c984c119a20c6b61,
     type: 3}
   focalPoint: {fileID: 0}

@@ -4,30 +4,16 @@ using UnityEngine;
 
 public class PersistentGameObject : MonoBehaviour
 {
-    public static PersistentGameObject singleton;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static PersistentGameObject Singleton { get; private set; }
 
     private void Awake()
     {
-        if (null == singleton)
-        {
-            singleton = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (null != Singleton)
         {
             Destroy(gameObject);
+            return;
         }
+        Singleton = this;
+        DontDestroyOnLoad(gameObject);
     }
 }
