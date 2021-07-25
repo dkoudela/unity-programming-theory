@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnStrategyBase : EnemySpawnStrategy
+public abstract class EnemySpawnStrategyBase : EnemySpawnStrategy
 {
-    public void Attack()
+    public GameObject gameObject;
+    public SpawnManager spawnManager;
+
+    public virtual void Attack()
     {
-        throw new System.NotImplementedException();
     }
 
-    public void Register(GameObject gameObject)
+    public virtual void Register(GameObject gameObject)
     {
-        throw new System.NotImplementedException();
+        this.gameObject = gameObject;
+        spawnManager = gameObject.GetComponent<SpawnManager>();
     }
 
-    public void SpawnEnemies(int gameLevel)
+    public virtual void SpawnEnemies(int gameLevel)
     {
-        throw new System.NotImplementedException();
+    }
+
+    protected void SpawnEnemyWave(int enemiesToSpawn, GameObject enemyPrefab)
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            GameObject.Instantiate(enemyPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), enemyPrefab.transform.rotation);
+        }
     }
 }

@@ -1,15 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BossEnemySpawnStrategy : EnemySpawnStrategy
+public class BossEnemySpawnStrategy : EnemySpawnStrategyBase
 {
-    public GameObject spawnManagerGameObject;
-    public SpawnManager spawnManager;
-
     private float spawnRepeat = 15.0f;
 
-    public void Attack()
+    public override void Attack()
     {
         GameObject player = GameObject.Find("Player");
         GameObject[] bossEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -22,25 +17,15 @@ public class BossEnemySpawnStrategy : EnemySpawnStrategy
         homingRocketController.activated = true;
     }
 
-    public void Register(GameObject gameObject)
+    public override void Register(GameObject gameObject)
     {
-        this.spawnManagerGameObject = gameObject;
-        spawnManager = spawnManagerGameObject.GetComponent<SpawnManager>();
+        base.Register(gameObject);
 
         spawnManager.InvokeRepeating("Attack", spawnRepeat, spawnRepeat);
     }
 
-    public void SpawnEnemies(int gameLevel)
+    public override void SpawnEnemies(int gameLevel)
     {
-        SpawnEnemyWave(gameLevel);
-    }
-
-    private void SpawnEnemyWave(int enemiesToSpawn)
-    {
-        for (int i = 0; i < enemiesToSpawn; i++)
-        {
-            GameObject.Instantiate(spawnManager.bossEnemyPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange),
-                spawnManager.bossEnemyPrefab.transform.rotation);
-        }
+        SpawnEnemyWave(gameLevel, spawnManager.bossEnemyPrefab);
     }
 }
