@@ -1,4 +1,3 @@
-﻿
-public class NoEnemySpawnStrategy : EnemySpawnStrategyBase
+﻿public class NoEnemySpawnStrategy : EnemySpawnStrategyBase
 {
 }

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class BasicPowerupSpawnStrategy : PowerupSpawnStrategyBase
+﻿public class BasicPowerupSpawnStrategy : PowerupSpawnStrategyBase
 {
     public override void SpawnPowerups(int gameLevel)
     {
