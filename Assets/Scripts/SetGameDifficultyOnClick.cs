@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -39,6 +42,16 @@ public class SetGameDifficultyOnClick : MonoBehaviour
         else if (gameObject.CompareTag("AllAround"))
         {
             gameDifficulty.SetGameDifficulty(GameDifficulty.GameDifficultyEnum.AllAround);
+        }
+        else if (gameObject.CompareTag("Exit"))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#elif (UNITY_WEBGL)
+            Application.OpenURL("about:blank");
+#else
+            Application.Quit(); // original code to quit Unity player
+#endif
         }
 
         SceneManager.LoadScene("Sumo Battle Game", LoadSceneMode.Single);

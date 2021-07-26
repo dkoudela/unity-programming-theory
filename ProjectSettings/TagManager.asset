@@ -15,6 +15,7 @@ TagManager:
   - AllAround
   - Wall
   - Walls
+  - Exit
   layers:
   - Default
   - TransparentFX
