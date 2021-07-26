@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // ENCAPSULATION
     private float fallBorder = -10;
     private Rigidbody enemyRb;
     private GameObject player;

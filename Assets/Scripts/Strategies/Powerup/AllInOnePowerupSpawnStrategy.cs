@@ -2,11 +2,13 @@
 using System.Linq;
 using UnityEngine;
 
+// INHERITANCE
 public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategyBase
 {
     private List<GameObject> gameObjects = new List<GameObject>();
     private float spawnRepeat = 15.0f;
 
+    // POLYMORPHISM
     public override void Register(GameObject gameObject)
     {
         base.Register(gameObject);
@@ -18,11 +20,13 @@ public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategyBase
         spawnManager.InvokeRepeating("SpawnPowerups", spawnRepeat, spawnRepeat);
     }
 
+    // POLYMORPHISM
     public override void SpawnPowerups(int gameLevel)
     {
         SpawnPowerup();
     }
 
+    // POLYMORPHISM
     private void SpawnPowerup()
     {
         int gameObjectIndex = Random.Range(0, gameObjects.Count);

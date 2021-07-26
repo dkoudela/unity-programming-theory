@@ -1,3 +1,4 @@
-﻿public class NoEnemySpawnStrategy : EnemySpawnStrategyBase
+﻿// INHERITANCE
+public class NoEnemySpawnStrategy : EnemySpawnStrategyBase
 {
 }

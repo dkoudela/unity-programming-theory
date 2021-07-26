@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HomingRocketController : MonoBehaviour
 {
+    // ENCAPSULATION
     public GameObject Enemy { get; set; }  = null;
     public bool Activated { get; set; } = false;
     private float speed = 40.0f;

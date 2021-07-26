@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
+// INHERITANCE
 public class BossEnemySpawnStrategy : EnemySpawnStrategyBase
 {
     private float spawnRepeat = 15.0f;
 
+    // POLYMORPHISM
     public override void Attack()
     {
         GameObject player = GameObject.Find("Player");
@@ -17,6 +19,7 @@ public class BossEnemySpawnStrategy : EnemySpawnStrategyBase
         homingRocketController.Activated = true;
     }
 
+    // POLYMORPHISM
     public override void Register(GameObject gameObject)
     {
         base.Register(gameObject);
@@ -24,6 +27,7 @@ public class BossEnemySpawnStrategy : EnemySpawnStrategyBase
         spawnManager.InvokeRepeating("Attack", spawnRepeat, spawnRepeat);
     }
 
+    // POLYMORPHISM
     public override void SpawnEnemies(int gameLevel)
     {
         SpawnEnemyWave(gameLevel, spawnManager.bossEnemyPrefab);

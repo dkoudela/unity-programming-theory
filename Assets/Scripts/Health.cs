@@ -2,6 +2,7 @@
 
 public class Health : MonoBehaviour
 {
+    // ENCAPSULATION
     private int health;
     private string healthTextPrefix = "Health: ";
 

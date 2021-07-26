@@ -7,6 +7,7 @@ public class PowerupManager : MonoBehaviour, SpawnObserver
 {
     public enum Powerup { strongPU, projectilePU, smashPU };
 
+    // ENCAPSULATION
     private int coroutineDelay = 7;
     private float projectileRepeatRate = 1.0f;
     private GameObject player;

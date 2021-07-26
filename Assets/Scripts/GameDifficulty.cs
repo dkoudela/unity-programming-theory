@@ -11,6 +11,7 @@ public class GameDifficulty : MonoBehaviour
 {
     public enum GameDifficultyEnum { Basic, Easy, Medium, Hard, Expert, AllAround };
 
+    // ENCAPSULATION
     public GameDifficultyEnum CurrentGameDifficulty { get; private set; } = GameDifficultyEnum.Basic;
     private List<GameDifficultyObserver> observers = new List<GameDifficultyObserver>();
 

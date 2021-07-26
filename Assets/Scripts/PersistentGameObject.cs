@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PersistentGameObject : MonoBehaviour
 {
+    // ENCAPSULATION
     public static PersistentGameObject Singleton { get; private set; }
 
     private void Awake()
