@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        Utilities.ChangeText("Max Score", maxScoreTextPrefix + gameManager.maxScore);
+        Utilities.ChangeText("Max Score", maxScoreTextPrefix + gameManager.MaxScore);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!gameManager.gameOver)
+        if (!gameManager.GameOver)
         {
             AddScore();
         }
@@ -55,6 +55,6 @@ public class Enemy : MonoBehaviour
         }
 
         gameManager.AddScore(achievedScore);
-        Utilities.ChangeText("Score", scoreTextPrefix + gameManager.score);
+        Utilities.ChangeText("Score", scoreTextPrefix + gameManager.Score);
     }
 }

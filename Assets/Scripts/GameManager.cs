@@ -5,20 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, GameDifficultyObserver
 {
+    // ENCAPSULATION
     public PlayerControllerStrategy PlayerControllsStrategy { get; private set; }
     public EnemySpawnStrategy EnemySpawnStrategy { get; private set; }
     public PowerupSpawnStrategy PowerupSpawnStrategy { get; private set; }
 
-    public bool gameOver;
-    public GameDifficulty gameDifficulty;
-    public int levelNumber = 1;
-    public int score = 0;
-    public int maxScore = 0;
+    public bool GameOver { get; private set; }
+    public int LevelNumber { get; private set; } = 1;
+    public int Score { get; private set; } = 0;
+    public int MaxScore { get; private set; } = 0;
 
     private int strategyIndex = 1;
     private string maxScoreTextPrefix = "Max Score: ";
     private List<EnemySpawnStrategy> enemySpawnStrategies = new List<EnemySpawnStrategy>();
     private List<SpawnObserver> spawnObservers = new List<SpawnObserver>();
+    private GameDifficulty gameDifficulty;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +28,14 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
         enemySpawnStrategies.Add(new HarderEnemySpawnStrategy());
         enemySpawnStrategies.Add(new BossEnemySpawnStrategy());
 
-        levelNumber = 1;
+        LevelNumber = 1;
         strategyIndex = 0;
-        score = 0;
-        maxScore = 0;
+        Score = 0;
+        MaxScore = 0;
         gameDifficulty = FindObjectOfType<GameDifficulty>();
         SetupStrategies();
         GameStart();
         gameDifficulty.Attach(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void OnEnable()
@@ -56,7 +52,7 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
     {
         if (scene.name.Contains("Sumo Battle Menu"))
         {
-            Utilities.ChangeText("Max Score Global", maxScoreTextPrefix + maxScore);
+            Utilities.ChangeText("Max Score Global", maxScoreTextPrefix + MaxScore);
         }
     }
 
@@ -70,12 +66,12 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
         if (gameDifficulty.CurrentGameDifficulty == GameDifficulty.GameDifficultyEnum.AllAround)
         {
             strategyIndex++;
-            levelNumber = (strategyIndex / enemySpawnStrategies.Count) + 1;
+            LevelNumber = (strategyIndex / enemySpawnStrategies.Count) + 1;
             EnemySpawnStrategy = enemySpawnStrategies.ElementAt(strategyIndex % enemySpawnStrategies.Count);
         }
         else 
         {
-            levelNumber++;
+            LevelNumber++;
             strategyIndex++;
         }
 
@@ -88,23 +84,23 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
 
     public void AddScore(int score)
     {
-        this.score += score;
+        this.Score += score;
     }
 
-    public void GameOver()
+    public void GameFinished()
     {
-        gameOver = true;
-        levelNumber = 1;
+        GameOver = true;
+        LevelNumber = 1;
         strategyIndex = 0;
-        if (score > maxScore)
-            maxScore = score;
-        score = 0;
+        if (Score > MaxScore)
+            MaxScore = Score;
+        Score = 0;
         spawnObservers.Clear();
     }
 
     private void GameStart()
     {
-        gameOver = false;
+        GameOver = false;
 
         foreach (SpawnObserver spawnObserver in spawnObservers)
         {

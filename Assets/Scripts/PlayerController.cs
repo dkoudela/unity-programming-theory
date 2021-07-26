@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        gameManager.GameOver(); 
+        gameManager.GameFinished(); 
         SceneManager.LoadScene("Sumo Battle Menu", LoadSceneMode.Single);
     }
 }

@@ -44,9 +44,9 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
 
     public void Spawn()
     {
-        Utilities.ChangeText("Level", levelTextPrefix + gameManager.levelNumber);
+        Utilities.ChangeText("Level", levelTextPrefix + gameManager.LevelNumber);
 
-        gameManager.EnemySpawnStrategy.SpawnEnemies(gameManager.levelNumber); // ABSTRACTION
+        gameManager.EnemySpawnStrategy.SpawnEnemies(gameManager.LevelNumber); // ABSTRACTION
         SpawnPowerups();
     }
 
@@ -56,7 +56,7 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
 
     private void SpawnPowerups()
     {
-        gameManager.PowerupSpawnStrategy.SpawnPowerups(gameManager.levelNumber); // ABSTRACTION
+        gameManager.PowerupSpawnStrategy.SpawnPowerups(gameManager.LevelNumber); // ABSTRACTION
     }
 
     private void Attack()
