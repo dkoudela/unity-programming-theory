@@ -7,6 +7,7 @@
 /// The passed game object is then used by the strategy for accessing its properties, components, etc. 
 /// to be able changing the game object's behavior or anything else.
 /// </remarks>
+// ABSTRACTION
 public interface ControlledGameObjectByStrategy
 {
     void Register(GameObject gameObject);
@@ -19,6 +20,7 @@ public interface ControlledGameObjectByStrategy
 /// GoF Strategy for easily switch of different player behaviour
 /// Handles movement of the player and reaction on collision with enemy
 /// </remarks>
+// ABSTRACTION
 public interface PlayerControllerStrategy : ControlledGameObjectByStrategy
 {
     void HandleControlls();
@@ -32,6 +34,7 @@ public interface PlayerControllerStrategy : ControlledGameObjectByStrategy
 /// GoF Strategy for easily switch of different enemy spawn strategy for the game difficulty
 /// It spawns the enemies and triggers enemy to attack the player
 /// </remarks>
+// ABSTRACTION
 public interface EnemySpawnStrategy : ControlledGameObjectByStrategy
 {
     void SpawnEnemies(int gameLevel);
@@ -45,6 +48,7 @@ public interface EnemySpawnStrategy : ControlledGameObjectByStrategy
 /// GoF Strategy for easily switch of different powerup spawn strategy for the game difficulty
 /// It spawns the powerups
 /// </remarks>
+// ABSTRACTION
 public interface PowerupSpawnStrategy : ControlledGameObjectByStrategy
 {
     void SpawnPowerups(int gameLevel);
@@ -57,6 +61,7 @@ public interface PowerupSpawnStrategy : ControlledGameObjectByStrategy
 /// GoF Observer pattern for breaking the circular dependency amount the GameManager and GameObjects
 /// GameManager notifies the SpawnObservers when strategies have been switched, new game has been started or new level is set
 /// </remarks>
+// ABSTRACTION
 public interface SpawnObserver
 {
     void Register();

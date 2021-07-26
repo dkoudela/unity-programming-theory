@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         FocalPoint = GameObject.Find("Focal Point");
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.playerControllsStrategy.Register(gameObject);
+        gameManager.PlayerControllsStrategy.Register(gameObject); // ABSTRACTION
         PowerupManager = FindObjectOfType<PowerupManager>();
         PowerupManager.SetPlayer(gameObject);
         health = GetComponent<Health>();
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        gameManager.playerControllsStrategy.HandleControlls();
+        gameManager.PlayerControllsStrategy.HandleControlls(); // ABSTRACTION
 
         if (transform.position.y < fallBorder)
         {
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            gameManager.playerControllsStrategy.HandleEnemyCollision(collision);
+            gameManager.PlayerControllsStrategy.HandleEnemyCollision(collision); // ABSTRACTION
         }
     }
 
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        gameManager.GameOver();
+        gameManager.GameOver(); 
         SceneManager.LoadScene("Sumo Battle Menu", LoadSceneMode.Single);
     }
 }

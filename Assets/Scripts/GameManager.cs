@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, GameDifficultyObserver
 {
-    public PlayerControllerStrategy playerControllsStrategy;
-    public EnemySpawnStrategy enemySpawnStrategy;
-    public PowerupSpawnStrategy powerupSpawnStrategy;
+    public PlayerControllerStrategy PlayerControllsStrategy { get; private set; }
+    public EnemySpawnStrategy EnemySpawnStrategy { get; private set; }
+    public PowerupSpawnStrategy PowerupSpawnStrategy { get; private set; }
 
     public bool gameOver;
     public GameDifficulty gameDifficulty;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
         {
             strategyIndex++;
             levelNumber = (strategyIndex / enemySpawnStrategies.Count) + 1;
-            enemySpawnStrategy = enemySpawnStrategies.ElementAt(strategyIndex % enemySpawnStrategies.Count);
+            EnemySpawnStrategy = enemySpawnStrategies.ElementAt(strategyIndex % enemySpawnStrategies.Count);
         }
         else 
         {
@@ -117,34 +117,34 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
         switch(gameDifficulty.CurrentGameDifficulty)
         {
             case GameDifficulty.GameDifficultyEnum.Basic:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = new BasicEnemySpawnStrategy();
-                powerupSpawnStrategy = new BasicPowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = new BasicEnemySpawnStrategy();
+                PowerupSpawnStrategy = new BasicPowerupSpawnStrategy();
                 break;
             case GameDifficulty.GameDifficultyEnum.Easy:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = new HarderEnemySpawnStrategy();
-                powerupSpawnStrategy = new BasicPowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = new HarderEnemySpawnStrategy();
+                PowerupSpawnStrategy = new BasicPowerupSpawnStrategy();
                 break;
             case GameDifficulty.GameDifficultyEnum.Medium:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = new BasicEnemySpawnStrategy();
-                powerupSpawnStrategy = new ProjectilePowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = new BasicEnemySpawnStrategy();
+                PowerupSpawnStrategy = new ProjectilePowerupSpawnStrategy();
                 break;
             case GameDifficulty.GameDifficultyEnum.Hard:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = new BasicEnemySpawnStrategy();
-                powerupSpawnStrategy = new SmashPowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = new BasicEnemySpawnStrategy();
+                PowerupSpawnStrategy = new SmashPowerupSpawnStrategy();
                 break;
             case GameDifficulty.GameDifficultyEnum.Expert:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = new BossEnemySpawnStrategy();
-                powerupSpawnStrategy = new AllInOnePowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = new BossEnemySpawnStrategy();
+                PowerupSpawnStrategy = new AllInOnePowerupSpawnStrategy();
                 break;
             case GameDifficulty.GameDifficultyEnum.AllAround:
-                playerControllsStrategy = new BasicPlayerControllerStrategy();
-                enemySpawnStrategy = enemySpawnStrategies.ElementAt(strategyIndex % enemySpawnStrategies.Count);
-                powerupSpawnStrategy = new AllInOnePowerupSpawnStrategy();
+                PlayerControllsStrategy = new BasicPlayerControllerStrategy();
+                EnemySpawnStrategy = enemySpawnStrategies.ElementAt(strategyIndex % enemySpawnStrategies.Count);
+                PowerupSpawnStrategy = new AllInOnePowerupSpawnStrategy();
                 break;
         }
     }

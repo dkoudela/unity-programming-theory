@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
         gameManager = FindObjectOfType<GameManager>();
         Register();
         Spawn();
-        gameManager.Register(this);
+        gameManager.Register(this); // ABSTRACTION
     }
 
     // Update is called once per frame
@@ -38,15 +38,15 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
 
     public void Register()
     {
-        gameManager.enemySpawnStrategy.Register(gameObject);
-        gameManager.powerupSpawnStrategy.Register(gameObject);
+        gameManager.EnemySpawnStrategy.Register(gameObject); // ABSTRACTION
+        gameManager.PowerupSpawnStrategy.Register(gameObject); // ABSTRACTION
     }
 
     public void Spawn()
     {
         Utilities.ChangeText("Level", levelTextPrefix + gameManager.levelNumber);
 
-        gameManager.enemySpawnStrategy.SpawnEnemies(gameManager.levelNumber);
+        gameManager.EnemySpawnStrategy.SpawnEnemies(gameManager.levelNumber); // ABSTRACTION
         SpawnPowerups();
     }
 
@@ -56,11 +56,11 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
 
     private void SpawnPowerups()
     {
-        gameManager.powerupSpawnStrategy.SpawnPowerups(gameManager.levelNumber);
+        gameManager.PowerupSpawnStrategy.SpawnPowerups(gameManager.levelNumber); // ABSTRACTION
     }
 
     private void Attack()
     {
-        gameManager.enemySpawnStrategy.Attack();
+        gameManager.EnemySpawnStrategy.Attack(); // ABSTRACTION
     }
 }

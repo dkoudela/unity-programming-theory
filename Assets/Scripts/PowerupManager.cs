@@ -18,7 +18,7 @@ public class PowerupManager : MonoBehaviour, SpawnObserver
     void Start() 
     {
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.Register(this);
+        gameManager.Register(this); // ABSTRACTION
     }
 
     void Update() { }
