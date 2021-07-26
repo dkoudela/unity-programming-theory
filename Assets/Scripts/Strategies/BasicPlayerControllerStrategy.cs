@@ -22,7 +22,7 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
     public void HandleControlls()
     {
         float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(playerController.focalPoint.transform.forward * forwardInput * PlayerController.speed);
+        playerRb.AddForce(playerController.focalPoint.transform.forward * forwardInput * playerController.speed);
         playerController.powerupIndicator.transform.position = playerController.transform.position + new Vector3(0, -0.5f, 0);
 
         if (playerController.powerupManager.hasPowerup(PowerupManager.Powerup.smashPU))
@@ -30,9 +30,9 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
             SmashEnemiesOnlyOnFallDown();
 
             if (Input.GetKeyDown(KeyCode.Space)
-                && gameObject.transform.position.y < PlayerController.jumpUpLimit)
+                && gameObject.transform.position.y < playerController.jumpUpLimit)
             {
-                playerRb.AddForce(Vector3.up * PlayerController.jumpForce);
+                playerRb.AddForce(Vector3.up * playerController.jumpForce);
                 playerController.StartCoroutine(SmashEnableCountdownRoutine());
             }
         }
@@ -48,7 +48,7 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - playerController.transform.position);
-            enemyRigidbody.AddForce(awayFromPlayer * PlayerController.powerupStrength, ForceMode.Impulse);
+            enemyRigidbody.AddForce(awayFromPlayer * playerController.powerupStrength, ForceMode.Impulse);
         }
     }
 
@@ -58,9 +58,9 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
     private void SmashEnemiesOnlyOnFallDown()
     {
         if (isJump
-            && Utilities.IsBetweenRange(gameObject.transform.position.y, PlayerController.jumpDownLimit, PlayerController.jumpUpLimit)
-            && Utilities.IsBetweenRange(gameObject.transform.position.x, -PlayerController.islandBorder, PlayerController.islandBorder)
-            && Utilities.IsBetweenRange(gameObject.transform.position.z, -PlayerController.islandBorder, PlayerController.islandBorder))
+            && Utilities.IsBetweenRange(gameObject.transform.position.y, playerController.jumpDownLimit, playerController.jumpUpLimit)
+            && Utilities.IsBetweenRange(gameObject.transform.position.x, -playerController.islandBorder, playerController.islandBorder)
+            && Utilities.IsBetweenRange(gameObject.transform.position.z, -playerController.islandBorder, playerController.islandBorder))
         {
             isJump = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

@@ -11,7 +11,7 @@ public class GameDifficulty : MonoBehaviour
 {
     public enum GameDifficultyEnum { Basic, Easy, Medium, Hard, Expert, AllAround };
 
-    public GameDifficultyEnum CurrentGameDifficulty { get; private set; }
+    public GameDifficultyEnum gameDifficultyEnum = GameDifficultyEnum.Basic;
     private List<GameDifficultyObserver> observers = new List<GameDifficultyObserver>();
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class GameDifficulty : MonoBehaviour
 
     public void SetGameDifficulty(GameDifficultyEnum gameDifficulty)
     {
-        CurrentGameDifficulty = gameDifficulty;
+        gameDifficultyEnum = gameDifficulty;
         foreach (GameDifficultyObserver observer in observers)
         {
             observer.notify();

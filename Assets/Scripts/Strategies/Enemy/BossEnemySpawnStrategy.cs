@@ -13,8 +13,8 @@ public class BossEnemySpawnStrategy : EnemySpawnStrategyBase
             bossEnemy.transform.position,
             player.transform.position,
             spawnManager.projectile);
-        homingRocketController.Enemy = player;
-        homingRocketController.Activated = true;
+        homingRocketController.enemy = player;
+        homingRocketController.activated = true;
     }
 
     public override void Register(GameObject gameObject)

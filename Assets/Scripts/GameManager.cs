@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
 
     public void LevelComplete()
     {
-        if (gameDifficulty.CurrentGameDifficulty == GameDifficulty.GameDifficultyEnum.AllAround)
+        if (gameDifficulty.gameDifficultyEnum == GameDifficulty.GameDifficultyEnum.AllAround)
         {
             strategyIndex++;
             levelNumber = (strategyIndex / enemySpawnStrategies.Count) + 1;
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour, GameDifficultyObserver
 
     private void SetupStrategies()
     {
-        switch(gameDifficulty.CurrentGameDifficulty)
+        switch(gameDifficulty.gameDifficultyEnum)
         {
             case GameDifficulty.GameDifficultyEnum.Basic:
                 playerControllsStrategy = new BasicPlayerControllerStrategy();

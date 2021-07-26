@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public const float speed = 5.0f;
-    public const float jumpForce = 500.0f;
-    public const float powerupStrength = 15.0f;
-    public const float jumpUpLimit = 0.5f;
-    public const float jumpDownLimit = 0.0f;
-    public const float islandBorder = 13.0f;
+    public float speed = 5.0f;
+    public float jumpForce = 500.0f;
+    public float powerupStrength = 15.0f;
+    public float jumpUpLimit = 0.5f;
+    public float jumpDownLimit = 0.0f;
+    public float islandBorder = 13.0f;
     public GameObject powerupIndicator;
     public GameObject projectile;
     public GameObject focalPoint;

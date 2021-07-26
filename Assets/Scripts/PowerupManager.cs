@@ -73,8 +73,8 @@ public class PowerupManager : MonoBehaviour, SpawnObserver
                     playerController.transform.position,
                     enemy.transform.position,
                     playerController.projectile);
-                homingRocketController.Enemy = enemy;
-                homingRocketController.Activated = true;
+                homingRocketController.enemy = enemy;
+                homingRocketController.activated = true;
             }
         }
     }
