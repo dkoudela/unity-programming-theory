@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     private string scoreTextPrefix = "Score: ";
     private string maxScoreTextPrefix = "Max Score: ";
-    public float speed = 3.0f;
+    [SerializeField]
+    private float speed = 3.0f;
     // Start is called before the first frame update
     void Start()
     {

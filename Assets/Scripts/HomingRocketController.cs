@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HomingRocketController : MonoBehaviour
 {
-    public GameObject enemy = null;
-    public bool activated = false;
+    public GameObject Enemy { get; set; }  = null;
+    public bool Activated { get; set; } = false;
     private float speed = 40.0f;
     private float rotationSpeed = 5.0f;
     private float timer = 0;
@@ -35,13 +35,13 @@ public class HomingRocketController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (null != enemy)
+        if (null != Enemy)
         {
-            activated = true;
+            Activated = true;
             timer += Time.deltaTime;
 
             // Adapt direction
-            Vector3 lookDirection = (enemy.transform.position - transform.position).normalized;
+            Vector3 lookDirection = (Enemy.transform.position - transform.position).normalized;
             homingRocketRb.AddForce(lookDirection * speed);
 
             if (timer > ttl)
@@ -49,7 +49,7 @@ public class HomingRocketController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (activated)
+        else if (Activated)
         {
             Destroy(gameObject);
         }
@@ -59,7 +59,7 @@ public class HomingRocketController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
-            if (0 == other.gameObject.name.CompareTo(enemy.name))
+            if (0 == other.gameObject.name.CompareTo(Enemy.name))
             {
                 Destroy(gameObject);
                 Health health = other.gameObject.GetComponent<Health>();
@@ -70,12 +70,12 @@ public class HomingRocketController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (null != enemy)
+        if (null != Enemy)
         {
             // Adapt rotation
-            Vector3 targetDir = enemy.transform.position - transform.position;
+            Vector3 targetDir = Enemy.transform.position - transform.position;
             Vector3 forward = transform.forward;
-            Vector3 localTarget = transform.InverseTransformPoint(enemy.transform.position);
+            Vector3 localTarget = transform.InverseTransformPoint(Enemy.transform.position);
 
             float angle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
 
