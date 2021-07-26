@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour, SpawnObserver
 {
-    public int enemyCount;
-    public GameManager gameManager;
+    private int enemyCount;
+    private string levelTextPrefix = "Level: ";
+    private GameManager gameManager;
     public GameObject enemyPrefab;
     public GameObject harderEnemyPrefab;
     public GameObject bossEnemyPrefab;
@@ -13,9 +14,7 @@ public class SpawnManager : MonoBehaviour, SpawnObserver
     public GameObject powerupProjectilePrefab;
     public GameObject powerupSmashPrefab;
     public GameObject projectile;
-    public float spawnRange = 9;
-
-    private string levelTextPrefix = "Level: ";
+    public const float spawnRange = 9;
 
     // Start is called before the first frame update
     void Start()

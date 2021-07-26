@@ -22,10 +22,10 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
     public void HandleControlls()
     {
         float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(playerController.focalPoint.transform.forward * forwardInput * PlayerController.speed);
+        playerRb.AddForce(playerController.FocalPoint.transform.forward * forwardInput * PlayerController.speed);
         playerController.powerupIndicator.transform.position = playerController.transform.position + new Vector3(0, -0.5f, 0);
 
-        if (playerController.powerupManager.hasPowerup(PowerupManager.Powerup.smashPU))
+        if (playerController.PowerupManager.hasPowerup(PowerupManager.Powerup.smashPU))
         {
             SmashEnemiesOnlyOnFallDown();
 
@@ -44,7 +44,7 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
 
     public void HandleEnemyCollision(Collision collision)
     {
-        if (playerController.powerupManager.hasPowerup(PowerupManager.Powerup.strongPU))
+        if (playerController.PowerupManager.hasPowerup(PowerupManager.Powerup.strongPU))
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - playerController.transform.position);

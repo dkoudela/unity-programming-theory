@@ -17,6 +17,6 @@ public class PowerupSpawnStrategyBase : PowerupSpawnStrategy
 
     protected void SpawnPowerupWave(int gameLevel, GameObject powerupPrefab)
     {
-        GameObject.Instantiate(powerupPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), powerupPrefab.transform.rotation);
+        GameObject.Instantiate(powerupPrefab, Utilities.GenerateSpawnPosition(SpawnManager.spawnRange), powerupPrefab.transform.rotation);
     }
 }

@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     public const float islandBorder = 13.0f;
     public GameObject powerupIndicator;
     public GameObject projectile;
-    public GameObject focalPoint;
     public GameObject walls;
-    public GameManager gameManager;
-    public PowerupManager powerupManager;
+    public GameObject FocalPoint { get; private set; }
+    public PowerupManager PowerupManager { get; private set; }
+    private GameManager gameManager;
     private bool doNotFall = false;
     private float fallBorder = -10;
     private Health health;
@@ -23,11 +23,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        focalPoint = GameObject.Find("Focal Point");
+        FocalPoint = GameObject.Find("Focal Point");
         gameManager = FindObjectOfType<GameManager>();
         gameManager.playerControllsStrategy.Register(gameObject);
-        powerupManager = FindObjectOfType<PowerupManager>();
-        powerupManager.SetPlayer(gameObject);
+        PowerupManager = FindObjectOfType<PowerupManager>();
+        PowerupManager.SetPlayer(gameObject);
         health = GetComponent<Health>();
     }
 
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             Destroy(other.gameObject);
-            powerupManager.HandlePowerUpTrigger(other);
+            PowerupManager.HandlePowerUpTrigger(other);
         }
     }
 

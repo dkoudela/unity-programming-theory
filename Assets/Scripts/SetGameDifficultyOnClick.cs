@@ -14,12 +14,6 @@ public class SetGameDifficultyOnClick : MonoBehaviour
         gameDifficulty = FindObjectOfType<GameDifficulty>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void TaskOnClick()
     { 
         if (gameObject.CompareTag("Basic"))

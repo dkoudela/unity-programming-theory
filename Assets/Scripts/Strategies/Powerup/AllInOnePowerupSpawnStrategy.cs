@@ -27,6 +27,6 @@ public class AllInOnePowerupSpawnStrategy : PowerupSpawnStrategyBase
     {
         int gameObjectIndex = Random.Range(0, gameObjects.Count);
         GameObject objectToSpawn = gameObjects.ElementAt(gameObjectIndex);
-        GameObject.Instantiate(objectToSpawn, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), objectToSpawn.transform.rotation);
+        GameObject.Instantiate(objectToSpawn, Utilities.GenerateSpawnPosition(SpawnManager.spawnRange), objectToSpawn.transform.rotation);
     }
 }

@@ -23,7 +23,7 @@ public abstract class EnemySpawnStrategyBase : EnemySpawnStrategy
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            GameObject.Instantiate(enemyPrefab, Utilities.GenerateSpawnPosition(spawnManager.spawnRange), enemyPrefab.transform.rotation);
+            GameObject.Instantiate(enemyPrefab, Utilities.GenerateSpawnPosition(SpawnManager.spawnRange), enemyPrefab.transform.rotation);
         }
     }
 }
