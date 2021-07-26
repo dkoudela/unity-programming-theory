@@ -29,8 +29,7 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
         {
             SmashEnemiesOnlyOnFallDown();
 
-            if (Input.GetKeyDown(KeyCode.Space)
-                && gameObject.transform.position.y < PlayerController.jumpUpLimit)
+            if (Input.GetKeyDown(KeyCode.Space) && IsOnGround())
             {
                 playerRb.AddForce(Vector3.up * PlayerController.jumpForce);
                 playerController.StartCoroutine(SmashEnableCountdownRoutine());
@@ -57,10 +56,7 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
     /// </summary>
     private void SmashEnemiesOnlyOnFallDown()
     {
-        if (isJump
-            && Utilities.IsBetweenRange(gameObject.transform.position.y, PlayerController.jumpDownLimit, PlayerController.jumpUpLimit)
-            && Utilities.IsBetweenRange(gameObject.transform.position.x, -PlayerController.islandBorder, PlayerController.islandBorder)
-            && Utilities.IsBetweenRange(gameObject.transform.position.z, -PlayerController.islandBorder, PlayerController.islandBorder))
+        if (isJump && IsOnGround())
         {
             isJump = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -81,5 +77,12 @@ public class BasicPlayerControllerStrategy : PlayerControllerStrategy
     {
         yield return new WaitForSeconds(smashCoroutineDelay);
         isJump = true;
+    }
+
+    private bool IsOnGround()
+    {
+        return Utilities.IsBetweenRange(gameObject.transform.position.y, PlayerController.jumpDownLimit, PlayerController.jumpUpLimit)
+            && Utilities.IsBetweenRange(gameObject.transform.position.x, -PlayerController.islandBorder, PlayerController.islandBorder)
+            && Utilities.IsBetweenRange(gameObject.transform.position.z, -PlayerController.islandBorder, PlayerController.islandBorder);
     }
 }
